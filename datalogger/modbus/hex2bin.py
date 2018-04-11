@@ -67,7 +67,7 @@ def convert():
     #end = "00000000000000000000000000" # 28 0 bits 
 
     def binary(n):
-	return '{0:08b}'.format(n) #converts int to bin 
+	return '{0:04b}'.format(n) #converts int to bin 
 
     def hex2dec2bin(myinput): #converts hex to bin
 	#adds the start buffer
@@ -77,19 +77,28 @@ def convert():
 	#print (length)
 	
 	for i in range (0, length):
-            #print(myinput[i])
-	    input1 = myinput[i]
-	    hexint = int(input1,16) #turns hex into decimal
-	    #print(hexint) print(binary(hexint)) 
-	    #print(binary(hexint)[::-1]) #flips the bits 
-	    #startBit+8_bit_msg+stopBit msg = startBit + 
-	    #binary(hexint) + stopBit
-	    msg = startBit + binary(hexint)[::-1] + stopBit
-	    #startBit+8_bit_msg+parityBit+stopBit msg = 
-	    #startBit + binary(hexint) + parityBit + stopBit 
-	    #msg = startBit + binary(hexint)[::-1] + 
-	    #parityBit + stopBit creates the modbus message
-	    modbusMsg = modbusMsg + msg
+            if (i % 2 == 0):
+		#print(myinput[i])
+		#print(myinput[i+1])
+		input1 = myinput[i]
+		input2 = myinput[i+1]
+		hexint1 = int(input1,16) #turns hex into decimal
+		hexint2 = int(input2,16)
+		#print(hexint1)
+		#print(hexint2)
+		#print(binary(hexint1)[::-1]) #flips the bits		
+		#print(binary(hexint2)[::-1])
+		
+		#start_bit+8_bit_msg+stop_bit
+		#msg = start_bit + binary(hexint1) + binary(hexint2) + stop_bit
+		msg = start_bit + binary(hexint1)[::-1] + binary(hexint2)[::-1] + stop_bit 		
+		
+		#start_bit+8_bit_msg+parity_bit+stop_bit
+		#msg = start_bit + binary(hexint1) + binary(hexint2) + parity_bit + stop_bit
+		#msg = start_bit + binary(hexint1)[::-1] + binary(hexint2)[::-1] + parity_bit + stop_bit		
+
+		#creates the modbus message
+		modbusMsg = modbusMsg + msg
 	
 	#adds the 0 buffer
 	modbusMsg = modbusMsg + end
@@ -97,7 +106,6 @@ def convert():
 	print modbusMsg
 	return modbusMsg
 
-    #input2 = "123A"
     hex2dec2bin(data)
 
 convert()
