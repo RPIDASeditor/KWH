@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+#./bin2hex.py 1 0 0 $(./pig2.py $(./hex2bin.py 1 0 0 01040000000271BC))
 import sys
 import time
 import pigpio

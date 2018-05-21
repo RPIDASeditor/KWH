@@ -4,12 +4,12 @@ import sys
 import time
 import pigpio
 
-RX = 9
-TX = 10
-TXRX = 27
+RX = 21 #9
+TX = 19 #10
+TXRX = 13 #27
 
 MSGLEN = 256
-baud = 2048
+baud = 1200
 bits = 8
 char_time = 10 / float(baud)
 
