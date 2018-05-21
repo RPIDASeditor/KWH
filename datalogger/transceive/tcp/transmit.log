@@ -3,4 +3,5 @@ datetime: 0
 temp: 0
 signal: 0
 tstring: 0
+/KWH/datalogger/transceive/tcp/tcpSend.sh: line 87: /KWH/datalogger/tranceive/tcp/fail.log: No such file or directory
 tcpSend: 0
